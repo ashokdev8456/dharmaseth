@@ -15,9 +15,9 @@ export function RelatedCampaigns({ campaign, related }: RelatedCampaignsProps) {
   if (related.length === 0) return null;
 
   return (
-    <Section tone="subtle" aria-labelledby="related-campaigns">
+    <Section aria-labelledby="related-campaigns" sx={{ py: { xs: 3, md: 4 }, bgcolor: "#FFFFFF" }}>
       <PageContainer>
-        <Typography id="related-campaigns" variant="h2" component="h2" sx={{ mb: { xs: 3, md: 4 } }}>
+        <Typography id="related-campaigns" variant="h2" component="h2" sx={{ mb: { xs: 2, md: 2.5 }, fontSize: { xs: "1.35rem", md: "1.5rem" } }}>
           More in {causeLabel(campaign.causeId)}
         </Typography>
         <Box

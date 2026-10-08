@@ -12,9 +12,12 @@ export function FAQHero() {
       component="section"
       aria-labelledby="faq-heading"
       sx={{
-        pt: { xs: 3, md: 6 },
-        pb: { xs: 2, md: 3 },
-        background: "radial-gradient(ellipse at 85% 0%, rgba(255, 159, 0, 0.14), transparent 52%)",
+        pt: { xs: 4, md: 7 },
+        pb: { xs: 4, md: 6 },
+        backgroundImage:
+          "linear-gradient(90deg, rgba(255,253,248,0.94) 0%, rgba(255,253,248,0.78) 55%, rgba(255,253,248,0.45) 100%), url(/images/temple-sanctum.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <PageContainer>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { PlaceholderPage } from "@/components/common/PlaceholderPage";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { pageMetadata } from "@/config/seo";
 import { routes } from "@/config/routes";
 
-const description = "A contact form will be added in a later phase.";
+const description = "A printed contact page. The form does not send a message.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
@@ -12,10 +12,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ContactPage() {
-  return (
-    <PlaceholderPage
-      title="Contact"
-      description={description}
-    />
-  );
+  return <ContactForm />;
 }

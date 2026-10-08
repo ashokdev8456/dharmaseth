@@ -16,10 +16,10 @@ export function CampaignNarrative({ campaign }: CampaignNarrativeProps) {
   const objectives = campaign.objectives?.filter((item) => item.trim()) ?? [];
 
   return (
-    <Stack spacing={{ xs: 5, md: 6 }}>
+    <Stack spacing={{ xs: 3, md: 3.5 }}>
       {paragraphs.length > 0 ? (
         <Stack component="section" aria-labelledby="campaign-story" spacing={2}>
-          <Typography id="campaign-story" variant="h2" component="h2">
+          <Typography id="campaign-story" variant="h2" component="h2" sx={{ fontSize: { xs: "1.35rem", md: "1.5rem" } }}>
             About this campaign
           </Typography>
           {paragraphs.map((paragraph) => (
@@ -32,7 +32,7 @@ export function CampaignNarrative({ campaign }: CampaignNarrativeProps) {
 
       {objectives.length > 0 ? (
         <Stack component="section" aria-labelledby="campaign-aims" spacing={2}>
-          <Typography id="campaign-aims" variant="h2" component="h2">
+          <Typography id="campaign-aims" variant="h2" component="h2" sx={{ fontSize: { xs: "1.35rem", md: "1.5rem" } }}>
             What support is for
           </Typography>
           <Typography variant="body1" color="text.secondary">

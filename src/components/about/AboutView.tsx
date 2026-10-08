@@ -12,6 +12,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Image from "next/image";
 import Link from "next/link";
 import { PageContainer } from "@/components/common/PageContainer";
+import { AppButton } from "@/components/ui/AppButton";
 import { Section } from "@/components/common/Section";
 import { liftCardSx } from "@/components/home/landing/cardMotion";
 import { routes } from "@/config/routes";
@@ -90,7 +91,17 @@ const records = [
 export function AboutView() {
   return (
     <>
-      <Section aria-labelledby="about-heading" tone="subtle" sx={{ pt: { xs: 3, md: 5 } }}>
+      <Section
+        aria-labelledby="about-heading"
+        sx={{
+          pt: { xs: 3, md: 5 },
+          pb: { xs: 4, md: 6 },
+          backgroundImage:
+            "linear-gradient(90deg, rgba(255,253,248,0.94) 0%, rgba(255,253,248,0.82) 48%, rgba(255,253,248,0.55) 100%), url(/images/temple-courtyard.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <PageContainer>
           <Breadcrumbs aria-label="Breadcrumb" sx={{ mb: 3, "& a": { color: "text.secondary", textDecoration: "none" } }}>
             <Link href={routes.home}>Home</Link>
@@ -261,18 +272,18 @@ export function AboutView() {
 
       <Section aria-labelledby="compass-heading" tone="subtle" sx={{ mt: { md: 2 } }}>
         <PageContainer>
-          <Stack spacing={1} sx={{ textAlign: "center", alignItems: "center", mb: 3 }}>
+          <Stack spacing={1} sx={{ mb: 3, maxWidth: 720 }}>
             <Typography variant="overline" sx={{ color: "primary.dark" }}>
               A guiding compass
             </Typography>
             <Typography id="compass-heading" variant="h2" component="h2">
               Mission, vision, and values
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 640 }}>
+            <Typography variant="body1" color="text.secondary">
               Rooted in the seva this site is built to carry.
             </Typography>
           </Stack>
-          <Box sx={{ display: "grid", gap: 2, gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" } }}>
+          <Box sx={{ display: "grid", gap: 2, alignItems: "stretch", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" } }}>
             <Stack spacing={1.5} sx={{ p: 2.5, height: "100%", borderRadius: "22px", bgcolor: "background.paper", border: "1px solid", borderColor: "border.subtle", ...liftCardSx }}>
               <TempleHinduOutlinedIcon sx={{ color: "primary.dark" }} />
               <Typography variant="overline" sx={{ color: "primary.dark" }}>Purpose</Typography>
@@ -311,9 +322,9 @@ export function AboutView() {
               <Typography variant="overline" sx={{ color: "primary.dark" }}>Seva</Typography>
               <Typography id="pillars-heading" variant="h2" component="h2">The sacred pillars of seva</Typography>
             </Stack>
-            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 360 }}>
-              A gift is pointed at one of these kinds of care.
-            </Typography>
+            <AppButton href={routes.explore} variant="text" trailingArrow sx={{ flexShrink: 0 }}>
+              Explore
+            </AppButton>
           </Stack>
           <Box sx={{ display: "grid", gap: 2, gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", lg: "repeat(4, minmax(0, 1fr))" } }}>
             {pillars.map((pillar) => (
@@ -360,7 +371,7 @@ export function AboutView() {
 
       <Section aria-labelledby="record-heading">
         <PageContainer>
-          <Box sx={{ display: "grid", gap: { xs: 3, md: 4 }, gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.9fr) minmax(0, 1.1fr)" } }}>
+          <Box sx={{ display: "grid", gap: { xs: 3, md: 4 }, alignItems: "stretch", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.85fr) minmax(0, 1.15fr)" } }}>
             <Stack spacing={2}>
               <Typography variant="overline" sx={{ color: "primary.dark" }}>Open pages</Typography>
               <Typography id="record-heading" variant="h2" component="h2" sx={{ fontSize: { xs: "2rem", md: "2.5rem" } }}>
@@ -372,7 +383,7 @@ export function AboutView() {
             </Stack>
             <Box sx={{ display: "grid", gap: 1.5, gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" } }}>
               {records.map((record) => (
-                <Link key={record.href} href={record.href} style={{ textDecoration: "none", color: "inherit" }}>
+                <Link key={record.href} href={record.href} style={{ textDecoration: "none", color: "inherit", display: "flex", height: "100%" }}>
                   <Stack spacing={1} sx={{ p: 2, height: "100%", borderRadius: "18px", bgcolor: "#FFF8EE", border: "1px solid #F3D7A6", ...liftCardSx }}>
                     <record.icon sx={{ color: "primary.dark" }} />
                     <Typography sx={{ fontWeight: 700 }}>{record.title}</Typography>
@@ -391,9 +402,31 @@ export function AboutView() {
             <Typography variant="overline" sx={{ color: "primary.dark" }}>The path</Typography>
             <Typography id="journey-heading" variant="h2" component="h2">The steps on this site</Typography>
           </Stack>
+          <Box sx={{ position: "relative" }}>
+            <Box
+              aria-hidden
+              sx={{
+                display: { xs: "none", lg: "block" },
+                position: "absolute",
+                top: 36,
+                left: "6%",
+                right: "6%",
+                height: 3,
+                borderRadius: 99,
+                bgcolor: "#FF9F00",
+                transformOrigin: "left center",
+                "@keyframes path-draw": {
+                  from: { transform: "scaleX(0)" },
+                  to: { transform: "scaleX(1)" },
+                },
+                "@media (prefers-reduced-motion: no-preference)": {
+                  animation: "path-draw 900ms cubic-bezier(0.2, 0, 0, 1) both",
+                },
+              }}
+            />
           <Box sx={{ display: "grid", gap: 1.5, gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", lg: "repeat(4, minmax(0, 1fr))" } }}>
             {aboutStory.milestones.map((step, index) => (
-              <Stack key={step.id} spacing={1} sx={{ p: 2, height: "100%", borderRadius: "18px", bgcolor: "background.paper", border: "1px solid", borderColor: "border.subtle" }}>
+              <Stack key={step.id} spacing={1} sx={{ position: "relative", p: 2, height: "100%", borderRadius: "18px", bgcolor: "background.paper", border: "1px solid", borderColor: "border.subtle" }}>
                 <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
                   <Typography sx={{ color: "primary.dark", fontWeight: 800 }}>{String(index + 1).padStart(2, "0")}</Typography>
                   <Box sx={{ width: 28, height: 28, borderRadius: "50%", display: "grid", placeItems: "center", bgcolor: index === aboutStory.milestones.length - 1 ? "primary.main" : "background.subtle", color: index === aboutStory.milestones.length - 1 ? "primary.contrastText" : "text.secondary", fontSize: "0.75rem", fontWeight: 700 }}>
@@ -404,6 +437,7 @@ export function AboutView() {
                 <Typography variant="body2" color="text.secondary">{step.description}</Typography>
               </Stack>
             ))}
+          </Box>
           </Box>
         </PageContainer>
       </Section>

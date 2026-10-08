@@ -1,52 +1,57 @@
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import { PageContainer } from "@/components/common/PageContainer";
-import { Reveal } from "@/components/common/Reveal";
 import { Section } from "@/components/common/Section";
 import { AppButton } from "@/components/ui/AppButton";
 import { aboutCta } from "@/data/about";
 
 export function AboutCTA() {
   return (
-    <Section aria-labelledby="about-cta">
+    <Section aria-labelledby="about-cta" sx={{ py: { xs: 3, md: 4 } }}>
       <PageContainer>
-        <Reveal>
-          <Stack
-            spacing={2.5}
-            sx={{
-              p: { xs: 3, md: 5 },
-              borderRadius: "28px",
-              color: "#FFFFFF",
-              background: "linear-gradient(115deg, #E39A1A 0%, #C46E00 48%, #A35600 100%)",
-            }}
-          >
-            <Typography variant="overline" sx={{ alignSelf: "flex-start", px: 1.25, py: 0.5, borderRadius: 999, bgcolor: "rgba(255,255,255,0.18)" }}>
+        <Box
+          sx={{
+            display: "grid",
+            alignItems: "stretch",
+            overflow: "hidden",
+            borderRadius: "28px",
+            border: "1px solid",
+            borderColor: "border.subtle",
+            bgcolor: "background.paper",
+            gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.9fr) minmax(0, 1.1fr)" },
+          }}
+        >
+          <Box sx={{ position: "relative", minHeight: { xs: 220, md: 320 } }}>
+            <Image
+              src="/images/home/annadanam-courtyard.jpg"
+              alt="A meal being served to people seated in a row in a temple courtyard."
+              fill
+              sizes="(min-width: 900px) 40vw, 100vw"
+              style={{ objectFit: "cover" }}
+            />
+          </Box>
+          <Stack spacing={2} sx={{ p: { xs: 3, md: 5 }, justifyContent: "center" }}>
+            <Typography variant="overline" sx={{ color: "primary.dark" }}>
               Join the living work
             </Typography>
-            <Typography id="about-cta" variant="h2" component="h2" sx={{ color: "inherit", maxWidth: 640 }}>
+            <Typography id="about-cta" variant="h2" component="h2">
               {aboutCta.title}
             </Typography>
-            <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.92)", maxWidth: 640 }}>
+            <Typography variant="body1" color="text.secondary">
               {aboutCta.description}
             </Typography>
             <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
-              <AppButton
-                href={aboutCta.primary.href}
-                variant="contained"
-                sx={{ "&&": { borderRadius: 999, bgcolor: "#171717", color: "#FFFFFF", borderColor: "#171717" } }}
-              >
+              <AppButton href={aboutCta.primary.href} variant="contained" sx={{ borderRadius: 999 }}>
                 {aboutCta.primary.label}
               </AppButton>
-              <AppButton
-                href={aboutCta.secondary.href}
-                variant="contained"
-                sx={{ "&&": { borderRadius: 999, bgcolor: "rgba(255,255,255,0.22)", color: "#FFFFFF", borderColor: "transparent" } }}
-              >
+              <AppButton href={aboutCta.secondary.href} variant="outlined" sx={{ borderRadius: 999 }}>
                 {aboutCta.secondary.label}
               </AppButton>
             </Stack>
           </Stack>
-        </Reveal>
+        </Box>
       </PageContainer>
     </Section>
   );

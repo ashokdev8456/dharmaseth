@@ -13,13 +13,28 @@ type FAQAccordionProps = {
 
 export function FAQAccordion({ items }: FAQAccordionProps) {
   return items.map((item) => (
-    <Accordion key={item.id}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: { xs: 0, sm: 1 }, minHeight: 48 }}>
-        <Typography component="span" variant="bodyLarge" sx={{ fontWeight: 600, pr: 2, overflowWrap: "anywhere" }}>
+    <Accordion
+      key={item.id}
+      disableGutters
+      elevation={0}
+      sx={{
+        mb: 1.25,
+        overflow: "hidden",
+        borderRadius: "16px !important",
+        border: "1px solid",
+        borderColor: "border.subtle",
+        borderLeft: "4px solid #FF9F00",
+        bgcolor: "#FFFDF8",
+        "&:before": { display: "none" },
+        "&.Mui-expanded": { bgcolor: "#FFF6E5" },
+      }}
+    >
+      <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: "primary.dark" }} />} sx={{ px: 2, minHeight: 56 }}>
+        <Typography component="span" variant="bodyLarge" sx={{ fontWeight: 700, pr: 2, overflowWrap: "anywhere" }}>
           {item.question}
         </Typography>
       </AccordionSummary>
-      <AccordionDetails sx={{ px: { xs: 0, sm: 1 }, pt: 0, pb: 2.5 }}>
+      <AccordionDetails sx={{ px: 2, pt: 0, pb: 2.5 }}>
         <Typography variant="body1" color="text.secondary">
           {item.answer.map((part, index) =>
             part.type === "link" ? (

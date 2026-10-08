@@ -4,14 +4,23 @@ type PageContainerProps = ContainerProps;
 
 export function PageContainer({
   children,
-  maxWidth = "lg",
+  maxWidth = false,
   sx,
   ...props
 }: PageContainerProps) {
   return (
     <Container
       maxWidth={maxWidth}
-      sx={[{ px: { xs: 2, sm: 3, lg: 4 } }, ...(Array.isArray(sx) ? sx : [sx])]}
+      disableGutters
+      sx={[
+        {
+          width: "100%",
+          maxWidth: maxWidth === false ? "100%" : undefined,
+          mx: "auto",
+          px: { xs: 2, sm: 2, lg: 2 },
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...props}
     >
       {children}

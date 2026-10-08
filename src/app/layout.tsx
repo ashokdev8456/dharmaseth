@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MainContent } from "@/components/layout/MainContent";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { RouteScroll } from "@/components/layout/RouteScroll";
 import { SiteMotion } from "@/components/motion/SiteMotion";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { websiteJsonLd } from "@/config/seo";
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeRegistry>
           <JsonLd data={websiteJsonLd()} />
           <SiteMotion />
+          <RouteScroll />
           <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
             <SkipLink />
             <Header />

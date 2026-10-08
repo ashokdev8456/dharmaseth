@@ -121,7 +121,7 @@ export function CampaignCard({ campaign, eager = false, titleComponent = "h2" }:
             },
           }}
         >
-          <Box className="card-media" sx={{ position: "relative", height: { xs: 168, sm: 176 }, flexShrink: 0 }}>
+          <Box className="card-media" sx={{ position: "relative", height: { xs: 128, sm: 136 }, flexShrink: 0 }}>
             <Image
               src={campaign.image.src}
               alt={campaign.image.alt}
@@ -157,10 +157,33 @@ export function CampaignCard({ campaign, eager = false, titleComponent = "h2" }:
                 ) : null}
               </Stack>
             </Stack>
-            <Typography variant="h3" component={titleComponent} sx={{ overflowWrap: "break-word" }}>
+            <Typography
+              variant="h3"
+              component={titleComponent}
+              sx={{
+                overflowWrap: "break-word",
+                fontSize: "1.05rem",
+                lineHeight: 1.3,
+                minHeight: "2.6em",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
               {campaign.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                minHeight: "2.7em",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
               {campaign.summary}
             </Typography>
             {campaign.location ? (

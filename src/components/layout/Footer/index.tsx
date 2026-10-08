@@ -35,7 +35,19 @@ function IconLink({ href, icon, children }: { href: string; icon: ReactNode; chi
           "&:hover": { color: "primary.dark" },
         }}
       >
-        <Box aria-hidden sx={{ display: "flex", color: "primary.dark" }}>
+        <Box
+          aria-hidden
+          sx={{
+            width: 28,
+            height: 28,
+            display: "grid",
+            placeItems: "center",
+            flexShrink: 0,
+            borderRadius: "8px",
+            color: "#171717",
+            bgcolor: "#FF9F00",
+          }}
+        >
           {icon}
         </Box>
         <Typography variant="body2">{children}</Typography>
@@ -112,7 +124,14 @@ export function Footer() {
         </PageContainer>
       </Box>
 
-      <Box sx={{ bgcolor: "#FFFdf8", color: "text.primary" }}>
+      <Box
+        sx={{
+          color: "text.primary",
+          bgcolor: "#FFF6E5",
+          borderTop: "4px solid #FF9F00",
+          backgroundImage: "linear-gradient(180deg, rgba(255, 159, 0, 0.22) 0px, rgba(255, 246, 229, 0) 160px)",
+        }}
+      >
         <PageContainer sx={{ py: { xs: 5, md: 6 } }}>
           <Box
             sx={{
@@ -136,7 +155,7 @@ export function Footer() {
             </Stack>
 
             <Stack spacing={0.5} component="nav" aria-label="Our programs">
-              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700, mb: 1, color: "primary.dark" }}>
                 Our programs
               </Typography>
               <IconLink href={routes.explore} icon={<TempleHinduOutlinedIcon sx={{ fontSize: 18 }} />}>
@@ -157,7 +176,7 @@ export function Footer() {
             </Stack>
 
             <Stack spacing={0.5} component="nav" aria-label="Transparency and trust">
-              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700, mb: 1, color: "primary.dark" }}>
                 Transparency & trust
               </Typography>
               <IconLink href={routes.privacy} icon={<PolicyOutlinedIcon sx={{ fontSize: 18 }} />}>
@@ -178,7 +197,7 @@ export function Footer() {
             </Stack>
 
             <Stack spacing={1.5} component="nav" aria-label="Direct seva">
-              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700 }}>
+              <Typography component="h2" variant="subtitle1" sx={{ fontWeight: 700, color: "primary.dark" }}>
                 Direct seva
               </Typography>
               <Stack
@@ -211,17 +230,17 @@ export function Footer() {
           </Box>
         </PageContainer>
 
-        <Box sx={{ borderTop: "1px solid", borderColor: "border.subtle" }}>
+        <Box sx={{ bgcolor: "#A35600", color: "#FFFDF8" }}>
           <PageContainer sx={{ py: 2 }}>
             <Stack
               direction={{ xs: "column", sm: "row" }}
               spacing={1}
               sx={{ justifyContent: "space-between", alignItems: { sm: "center" } }}
             >
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: "#FFFDF8" }}>
                 {siteConfig.name} © {year}. All rights reserved.
               </Typography>
-              <Typography variant="overline" sx={{ color: "primary.dark", letterSpacing: "0.14em" }}>
+              <Typography variant="overline" sx={{ color: "#FFD59A", letterSpacing: "0.14em" }}>
                 Dharma · Compassion · Service · Transparency · Impact
               </Typography>
             </Stack>

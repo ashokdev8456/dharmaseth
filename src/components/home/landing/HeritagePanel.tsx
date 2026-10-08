@@ -9,16 +9,14 @@ import { routes } from "@/config/routes";
 
 export function HeritagePanel() {
   return (
-    <Section screen accent tone="subtle" aria-labelledby="heritage-heading">
+    <Section accent tone="subtle" aria-labelledby="heritage-heading" sx={{ py: { xs: 3, md: 4 } }}>
       <PageContainer>
         <Box
           sx={{
             display: "grid",
             alignItems: "center",
-            height: { lg: "100%" },
-            minHeight: 0,
-            gap: { xs: 3, md: 4, lg: 5 },
-            gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1.2fr) minmax(260px, 0.72fr)" },
+            gap: { xs: 2, md: 3 },
+            gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.85fr) minmax(0, 1.15fr)" },
           }}
         >
           <Stack spacing={2.5}>
@@ -36,7 +34,7 @@ export function HeritagePanel() {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ fontSize: { xs: "1.08rem", md: "1.22rem" }, lineHeight: 1.75, maxWidth: 560 }}
+              sx={{ fontSize: { xs: "1rem", md: "1.08rem" }, lineHeight: 1.7 }}
             >
               The left side shows a place without proper upkeep. Open the right side to see the same kind of stone cared for and ready for worship. A gift toward heritage covers lamps, small repair, and the daily cost of keeping a sanctum open, so the work of puja can continue.
             </Typography>
@@ -65,7 +63,7 @@ export function HeritagePanel() {
                 afterSrc="/images/temple-tower.jpg"
                 alt="Overhead view of a South Indian temple tower, shown worn and then kept in good shape. This illustrates a kind of care. It is not a record of one finished repair."
                 active
-                minHeight={{ xs: 190, sm: 220, md: 280 }}
+                minHeight={{ xs: 220, sm: 280, md: 420 }}
               />
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ px: 1, pt: 1.25, pb: 0.25, fontSize: "0.95rem" }}>

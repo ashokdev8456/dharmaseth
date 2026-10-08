@@ -11,7 +11,6 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Link from "next/link";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Section } from "@/components/common/Section";
-import { liftCardSx } from "@/components/home/landing/cardMotion";
 import { routes } from "@/config/routes";
 import { trustContent, trustPoints } from "@/data/home";
 import type { TrustIconName } from "@/types/home";
@@ -40,14 +39,13 @@ const pages = [
 
 export function AccountPanel() {
   return (
-    <Section screen accent aria-labelledby="trust-heading" sx={{ bgcolor: "background.default" }}>
+    <Section accent aria-labelledby="trust-heading" sx={{ bgcolor: "background.default", py: { xs: 3, md: 4 } }}>
       <PageContainer>
         <Box
           sx={{
             display: "grid",
             gap: { xs: 3, md: 4, lg: 5 },
             alignItems: { xs: "start", lg: "center" },
-            height: { lg: "100%" },
             minHeight: 0,
             gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.9fr) minmax(0, 1.1fr)" },
           }}
@@ -122,19 +120,22 @@ export function AccountPanel() {
                   spacing={1.5}
                   sx={{
                     alignItems: "center",
-                    p: 2,
+                    p: 1.5,
                     borderRadius: "18px",
                     border: "1px solid",
                     borderColor: "border.subtle",
                     bgcolor: "background.paper",
-                    ...liftCardSx,
+                    "@media (hover: hover) and (prefers-reduced-motion: no-preference)": {
+                      transition: "transform 280ms cubic-bezier(0.2, 0, 0, 1), border-color 150ms cubic-bezier(0.2, 0, 0, 1)",
+                      "&:hover": { transform: "translateY(-2px)", borderColor: "primary.main" },
+                    },
                   }}
                 >
                   <Box
                     aria-hidden
                     sx={{
-                      width: 40,
-                      height: 40,
+                      width: 32,
+                      height: 32,
                       flexShrink: 0,
                       display: "grid",
                       placeItems: "center",
@@ -143,13 +144,13 @@ export function AccountPanel() {
                       bgcolor: "background.subtle",
                     }}
                   >
-                    <Icon />
+                    <Icon sx={{ fontSize: 18 }} />
                   </Box>
                   <Stack spacing={0.25}>
-                    <Typography variant="h3" component="h3">
+                    <Typography variant="h3" component="h3" sx={{ fontSize: "0.95rem", lineHeight: 1.3 }}>
                       {point.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: "0.8rem", lineHeight: 1.4 }}>
                       {point.description}
                     </Typography>
                   </Stack>

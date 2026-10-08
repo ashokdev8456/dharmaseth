@@ -29,6 +29,10 @@ const spotlightPhotos: Record<string, { src: string; alt: string }> = {
     src: "/images/desi-cows.jpg",
     alt: "Indian cows resting in the shade of a banyan beside a tiled shelter.",
   },
+  "year-of-study": {
+    src: "/images/pathashala.jpg",
+    alt: "A teacher reading a palm-leaf manuscript on an Indian verandah.",
+  },
 };
 
 export function CauseSpotlight() {
@@ -119,7 +123,7 @@ export function CauseSpotlight() {
                     <Typography variant="h3" component="h3" sx={{ flexShrink: 0, lineHeight: 1.25 }}>
                       {campaign.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ flexShrink: 0 }}>
+                    <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
                       {campaign.summary}
                     </Typography>
                     <Stack spacing={1} sx={{ mt: "auto", flexShrink: 0 }}>

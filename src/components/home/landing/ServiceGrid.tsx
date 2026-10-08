@@ -11,7 +11,9 @@ import Link from "next/link";
 import { PageContainer } from "@/components/common/PageContainer";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { AppButton } from "@/components/ui/AppButton";
 import { liftCardSx } from "@/components/home/landing/cardMotion";
+import { routes } from "@/config/routes";
 import { sevaAreas, sevaAreasContent } from "@/data/home";
 import { motion } from "@/theme/motion";
 import type { SevaIconName } from "@/types/home";
@@ -25,6 +27,15 @@ const further: Record<string, string> = {
   "sacred-events": "The gathering is served by what is ready when people arrive.",
 };
 
+const photos: Record<string, string> = {
+  heritage: "/images/home/sanctum-lamps.jpg",
+  "vedic-education": "/images/pathashala.jpg",
+  "living-beings": "/images/desi-cows.jpg",
+  "seva-support": "/images/temple-service.jpg",
+  annadanam: "/images/annadanam.jpg",
+  "sacred-events": "/images/puja-homam.jpg",
+};
+
 const icons: Record<SevaIconName, typeof TempleHinduOutlinedIcon> = {
   temple: TempleHinduOutlinedIcon,
   learning: MenuBookOutlinedIcon,
@@ -36,25 +47,21 @@ const icons: Record<SevaIconName, typeof TempleHinduOutlinedIcon> = {
 
 export function ServiceGrid() {
   return (
-    <Section
-      screen
-      accent
-      aria-labelledby="seva-heading"
-      sx={{
-        bgcolor: "background.default",
-        "&&": { height: "auto", minHeight: "auto", overflow: "visible" },
-        "&& > .MuiContainer-root": { height: "auto", minHeight: "auto", flex: "none" },
-      }}
-    >
+    <Section accent aria-labelledby="seva-heading" sx={{ py: { xs: 3, md: 4 } }}>
       <PageContainer>
-        <Stack spacing={{ xs: 2.5, lg: 3 }}>
-          <SectionHeading
-            id="seva-heading"
-            eyebrow={sevaAreasContent.eyebrow}
-            title="Where your support creates change"
-            description={sevaAreasContent.description}
-            rule={false}
-          />
+        <Stack spacing={{ xs: 2, lg: 2.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2 }}>
+            <SectionHeading
+              id="seva-heading"
+              eyebrow={sevaAreasContent.eyebrow}
+              title="Where your support creates change"
+              description={sevaAreasContent.description}
+              rule={false}
+            />
+            <AppButton href={routes.explore} variant="text" trailingArrow sx={{ flexShrink: 0 }}>
+              Explore
+            </AppButton>
+          </Box>
           <Box
             sx={{
               display: "grid",
@@ -72,12 +79,16 @@ export function ServiceGrid() {
                     position: "relative",
                     overflow: "hidden",
                     height: "100%",
-                    p: 2.5,
+                    minHeight: 240,
+                    justifyContent: "flex-end",
+                    p: 2,
                     borderRadius: "22px",
                     border: "1px solid",
                     borderColor: "border.subtle",
-                    bgcolor: "background.paper",
-                    color: "text.primary",
+                    color: "#171717",
+                    backgroundImage: `linear-gradient(180deg, rgba(255,253,248,0.2) 0%, rgba(255,253,248,0.92) 58%), url(${photos[area.id]})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     ...liftCardSx,
                     "&::before": {
                       content: '""',

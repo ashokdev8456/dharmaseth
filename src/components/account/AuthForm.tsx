@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
 import Link from "next/link";
-import { PageContainer } from "@/components/common/PageContainer";
 import { Section } from "@/components/common/Section";
 import { AppButton } from "@/components/ui/AppButton";
 import { routes } from "@/config/routes";
@@ -95,18 +95,44 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
   }
 
   return (
-    <Section accent tone="subtle" sx={{ py: { xs: 3, md: 5 } }}>
-      <PageContainer>
+    <Section sx={{ py: 0 }}>
+      <Box
+        sx={{
+          display: "grid",
+          minHeight: { md: "calc(100svh - 72px)" },
+          alignItems: "stretch",
+          gridTemplateColumns: { xs: "1fr", md: "minmax(280px, 0.85fr) minmax(0, 1.15fr)" },
+        }}
+      >
+        <Box sx={{ position: "relative", minHeight: { xs: 220, md: "auto" } }}>
+          <Image
+            src="/images/temple-sanctum.jpg"
+            alt="A temple sanctum with lamps."
+            fill
+            priority
+            sizes="(min-width: 900px) 42vw, 100vw"
+            style={{ objectFit: "cover" }}
+          />
+          <Box aria-hidden sx={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(18,14,10,0.15), rgba(18,14,10,0.72))" }} />
+          <Stack spacing={1} sx={{ position: "relative", zIndex: 1, height: "100%", justifyContent: "flex-end", p: { xs: 3, md: 4 }, color: "#FFFDF8" }}>
+            <Typography variant="overline" sx={{ color: "#FFB347" }}>
+              DharmaSetHu Trust
+            </Typography>
+            <Typography variant="h2" component="p" sx={{ color: "inherit", fontSize: { xs: "1.6rem", md: "2rem" }, maxWidth: 360 }}>
+              Read the seva before you give.
+            </Typography>
+          </Stack>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", bgcolor: "#FFF6E5", px: { xs: 2, md: 5 }, py: { xs: 4, md: 5 } }}>
         <Box
           component="form"
           noValidate
           onSubmit={onSubmit}
           sx={{
             width: "100%",
-            maxWidth: 480,
-            mx: "auto",
-            p: { xs: 2.5, sm: 4 },
-            borderRadius: "28px",
+            maxWidth: 440,
+            p: { xs: 2.5, sm: 3.5 },
+            borderRadius: "24px",
             border: "1px solid",
             borderColor: "border.subtle",
             bgcolor: "background.paper",
@@ -179,20 +205,21 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
               />
             ) : null}
             {submitted ? <Alert severity="info">{notice}</Alert> : null}
-            <AppButton type="submit" variant="contained" sx={{ minHeight: 48, borderRadius: 999 }}>
+            <AppButton type="submit" variant="contained" sx={{ minHeight: 48, width: "100%", borderRadius: 999 }}>
               {page.submit}
             </AppButton>
             <AccountLinks mode={mode} />
           </Stack>
         </Box>
-      </PageContainer>
+        </Box>
+      </Box>
     </Section>
   );
 }
 
 function AccountLinks({ mode }: { mode: AuthMode }) {
   return (
-    <Stack spacing={1} sx={{ alignItems: "flex-start", "& a": { color: "primary.dark", fontWeight: 600 } }}>
+    <Stack spacing={1} sx={{ alignItems: "center", textAlign: "center", "& a": { color: "primary.dark", fontWeight: 600 } }}>
       {mode === "login" ? (
         <Typography variant="body2">
           <Link href={routes.forgotPassword}>Forgot password</Link>

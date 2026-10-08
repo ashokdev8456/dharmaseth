@@ -9,7 +9,7 @@ import { PageContainer } from "@/components/common/PageContainer";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { AppButton } from "@/components/ui/AppButton";
-import { campaignPath } from "@/config/routes";
+import { campaignPath, routes } from "@/config/routes";
 import { campaigns } from "@/data/campaigns";
 import { motion } from "@/theme/motion";
 import { causeLabel } from "@/utils/campaignFilters";
@@ -38,14 +38,19 @@ export function GatheringCards() {
       }}
     >
       <PageContainer>
-        <Stack spacing={{ xs: 2.5, lg: 3 }}>
-          <SectionHeading
-            id="gathering-heading"
-            eyebrow="Upcoming seva"
-            title="Community events and seva"
-            description="A night of worship, a meal for a gathering, and care for a resident sadhu. Open a card to read the seva and review a gift."
-            rule={false}
-          />
+        <Stack spacing={{ xs: 2, lg: 2.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2 }}>
+            <SectionHeading
+              id="gathering-heading"
+              eyebrow="Upcoming seva"
+              title="Community events and seva"
+              description="A night of worship, a meal for a gathering, and care for a resident sadhu. Open a card to read the seva and review a gift."
+              rule={false}
+            />
+            <AppButton href={routes.explore} variant="text" trailingArrow sx={{ flexShrink: 0 }}>
+              Explore
+            </AppButton>
+          </Box>
           <Box
             sx={{
               display: "grid",
@@ -87,7 +92,7 @@ function FlipCard({ campaign }: { campaign: (typeof campaigns)[number] }) {
         if (prefersFineHover()) return;
         setFlipped((value) => !value);
       }}
-      sx={{ perspective: "1400px", height: { xs: 520, md: 500 }, cursor: "pointer" }}
+      sx={{ perspective: "1400px", height: { xs: 380, md: 360 }, cursor: "pointer" }}
     >
       <Box
         sx={{
@@ -126,8 +131,11 @@ function FlipCard({ campaign }: { campaign: (typeof campaigns)[number] }) {
           sx={{
             position: "absolute",
             inset: 0,
-            justifyContent: "space-between",
-            p: { xs: 2.5, md: 3 },
+            justifyContent: "flex-start",
+            alignItems: "stretch",
+            textAlign: "left",
+            gap: 1.25,
+            p: 2,
             borderRadius: "24px",
             border: "1px solid",
             borderColor: "primary.main",
@@ -146,12 +154,12 @@ function FlipCard({ campaign }: { campaign: (typeof campaigns)[number] }) {
               {campaign.endDate ? `Ends ${campaign.endDate}` : "Open"}
             </Typography>
           </Stack>
-          <Stack spacing={1.25} sx={{ flex: 1, justifyContent: "center", py: 1.5, minHeight: 0 }}>
-            <Typography variant="h3" component="h3" sx={{ fontSize: { xs: "1.45rem", md: "1.6rem" }, lineHeight: 1.2 }}>
+          <Stack spacing={1} sx={{ flex: 1, justifyContent: "flex-start", minHeight: 0, overflow: "hidden" }}>
+            <Typography variant="h3" component="h3" sx={{ fontSize: { xs: "1.2rem", md: "1.3rem" }, lineHeight: 1.25 }}>
               {campaign.title}
             </Typography>
-            {campaign.story.split("\n\n").map((paragraph) => (
-              <Typography key={paragraph} variant="body2" color="text.secondary" sx={{ lineHeight: 1.55 }}>
+            {campaign.story.split("\n\n").slice(0, 1).map((paragraph) => (
+              <Typography key={paragraph} variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
                 {paragraph}
               </Typography>
             ))}
@@ -165,7 +173,7 @@ function FlipCard({ campaign }: { campaign: (typeof campaigns)[number] }) {
               </Stack>
             ) : null}
           </Stack>
-          <AppButton href={campaignPath(campaign.slug)} variant="outlined" sx={{ borderRadius: 999, alignSelf: "flex-start", minHeight: 44 }}>
+          <AppButton href={campaignPath(campaign.slug)} variant="outlined" sx={{ borderRadius: 999, alignSelf: "flex-start", minHeight: 44, mt: "auto" }}>
             Read this seva
           </AppButton>
         </Stack>

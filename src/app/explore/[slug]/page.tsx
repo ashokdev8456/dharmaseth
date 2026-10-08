@@ -67,7 +67,7 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
           { name: campaign.title, path: campaignPath(campaign.slug) },
         ])}
       />
-      <Section component="header" sx={{ py: { xs: 4, md: 6 } }}>
+      <Section component="header" accent tone="subtle" sx={{ py: { xs: 2, md: 3 } }}>
         <PageContainer>
           <Reveal>
             <CampaignHero campaign={campaign} />
@@ -80,7 +80,7 @@ export default async function CampaignPage({ params }: CampaignPageProps) {
             sx={{
               display: "grid",
               alignItems: "start",
-              gap: { xs: 4, lg: 6 },
+              gap: { xs: 2.5, lg: 3 },
               gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) 300px" },
               gridTemplateAreas: {
                 xs: `"story" "support"`,

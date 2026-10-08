@@ -6,7 +6,7 @@ import { PageContainer } from "@/components/common/PageContainer";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { AppButton } from "@/components/ui/AppButton";
-import { campaignPath } from "@/config/routes";
+import { campaignPath, routes } from "@/config/routes";
 import { featuredStory } from "@/data/home";
 import { motion } from "@/theme/motion";
 
@@ -32,6 +32,16 @@ const stories = [
     imageAlt: "A small oil lamp on a stone ledge in a quiet Indian temple verandah.",
     href: campaignPath("daily-lamps"),
   },
+  {
+    id: "grove",
+    label: "Living beings",
+    title: "Feed and shade for a grove",
+    quote: "Fodder, shelter, and shade for animals and the ground they live on.",
+    note: "The gift covers fodder, a simple shelter, and cover for the ground. The amount recorded for this seva is on its page.",
+    image: "/images/desi-cows.jpg",
+    imageAlt: "Indian cows resting in the shade beside a tiled shelter.",
+    href: campaignPath("grove-care"),
+  },
 ];
 
 const ease = motion.easing.standard;
@@ -49,28 +59,33 @@ export function StoryCards() {
       }}
     >
       <PageContainer>
-        <Stack spacing={{ xs: 2.5, lg: 3 }}>
-          <SectionHeading
-            id="stories-heading"
-            eyebrow={featuredStory.eyebrow}
-            title="Stories of dignity and hope"
-            description="Two notes from the work this trust stands behind: a meal offered with dignity, and a lamp kept for daily worship."
-            rule={false}
-          />
+        <Stack spacing={{ xs: 2, lg: 2.5 }}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2 }}>
+            <SectionHeading
+              id="stories-heading"
+              eyebrow={featuredStory.eyebrow}
+              title="Stories of dignity and hope"
+              description="A meal offered with dignity, a lamp kept for daily worship, and feed and shade for living beings."
+              rule={false}
+            />
+            <AppButton href={routes.explore} variant="text" trailingArrow sx={{ flexShrink: 0 }}>
+              Explore
+            </AppButton>
+          </Box>
           <Box
             sx={{
               display: "grid",
-              gap: 2.5,
+              gap: 2,
               alignItems: "stretch",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr", lg: "1fr 1fr 1fr" },
             }}
           >
             {stories.map((story) => (
               <Box
                 key={story.id}
                 sx={{
-                  display: "grid",
-                  gridTemplateColumns: { xs: "1fr", sm: "minmax(168px, 0.78fr) minmax(0, 1.22fr)" },
+                  display: "flex",
+                  flexDirection: "column",
                   height: "100%",
                   overflow: "hidden",
                   borderRadius: "28px",
@@ -103,8 +118,9 @@ export function StoryCards() {
                   sx={{
                     position: "relative",
                     overflow: "hidden",
-                    minHeight: { xs: 210, sm: 280 },
-                    height: { xs: 210, sm: "100%" },
+                    minHeight: 200,
+                    height: 200,
+                    flexShrink: 0,
                   }}
                 >
                   <Image
@@ -144,7 +160,7 @@ export function StoryCards() {
                     }}
                   />
                 </Box>
-                <Stack spacing={1.5} sx={{ p: { xs: 2.25, sm: 3 }, minWidth: 0 }}>
+                <Stack spacing={1.25} sx={{ p: 2, flexGrow: 1 }}>
                   <Typography variant="overline" sx={{ color: "primary.dark", letterSpacing: "0.16em" }}>
                     {story.label}
                   </Typography>
