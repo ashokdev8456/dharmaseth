@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dharmasethu
 
-## Getting Started
+Public website for reading about seva and reviewing a gift. It is a frontend only. There is no account system, database, payment gateway, or admin.
 
-First, run the development server:
+Campaigns, amounts, and supporter counts in the catalogue are samples. Privacy, terms, and cancellation are drafts for legal review. The footer email is a placeholder, not a live inbox.
+
+## Requirements
+
+- Node.js 20.9 or newer
+- npm
+
+Deployment, rollback, and the release checklist are in `PRODUCTION_READINESS.md`.
+
+## Setup
+
+```bash
+npm install
+```
+
+Copy `.env.example` to `.env.local` when the public site URL should differ from `http://localhost:3000`. Use `npm ci` for a deployment install from the lockfile.
+
+`NEXT_PUBLIC_SITE_URL` is the canonical origin for metadata, Open Graph, the sitemap, and robots. It is public. Do not put secrets in it.
+
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm start` serves the production build. Run `npm run build` first.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js App Router, React, TypeScript, Material UI, and Emotion. Server Components are the default. Client Components are used for the header, explore filters, FAQ search, contribution form, monthly giving form, and the share action.
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Path | Purpose |
+|---|---|
+| `/` | Home |
+| `/explore` | Sample campaign catalogue |
+| `/explore/[slug]` | Campaign detail |
+| `/explore/[slug]/give` | Contribution review. Not a payment. Not indexed. |
+| `/monthly` | Monthly giving review. Not a subscription. |
+| `/about` | Purpose and values |
+| `/faq` | Questions |
+| `/contact` | Placeholder until a contact form exists |
+| `/privacy`, `/terms`, `/cancellation` | Legal drafts |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Filtered explore URLs stay canonical to `/explore`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Layout
 
-## Deploy on Vercel
+```text
+src/app          routes, metadata, robots, sitemap
+src/components   interface, grouped by feature
+src/theme        MUI theme, motion, breakpoints
+src/data         static content
+src/types        domain types
+src/config       site, routes, navigation, form limits
+src/utils        formatting, validation, filters
+src/services     request builders only; no network calls
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Design tokens are described in `DESIGN_SYSTEM.md`.

@@ -1,69 +1,55 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import type { Metadata } from "next";
+import { Reveal } from "@/components/common/Reveal";
+import { AccountPanel } from "@/components/home/landing/AccountPanel";
+import { CauseSpotlight } from "@/components/home/landing/CauseSpotlight";
+import { GatheringCards } from "@/components/home/landing/GatheringCards";
+import { GiftPanel } from "@/components/home/landing/GiftPanel";
+import { HeritagePanel } from "@/components/home/landing/HeritagePanel";
+import { HomeScreenSnap } from "@/components/home/landing/HomeScreenSnap";
+import { LandingHero } from "@/components/home/landing/LandingHero";
+import { PurposeBand } from "@/components/home/landing/PurposeBand";
+import { ServiceGrid } from "@/components/home/landing/ServiceGrid";
+import { StoryCards } from "@/components/home/landing/StoryCards";
+import { pageMetadata } from "@/config/seo";
+import { routes } from "@/config/routes";
+import { siteConfig } from "@/config/site";
 
-export default function Home() {
+export const metadata: Metadata = pageMetadata({
+  title: `A bridge to living tradition | ${siteConfig.name}`,
+  description: siteConfig.description,
+  path: routes.home,
+  absolute: true,
+});
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <HomeScreenSnap />
+      <LandingHero />
+      <Reveal>
+        <CauseSpotlight />
+      </Reveal>
+      <Reveal delay={80}>
+        <ServiceGrid />
+      </Reveal>
+      <Reveal delay={80}>
+        <HeritagePanel />
+      </Reveal>
+      <Reveal delay={80}>
+        <PurposeBand />
+      </Reveal>
+      <Reveal delay={80}>
+        <GiftPanel />
+      </Reveal>
+      <Reveal delay={80}>
+        <AccountPanel />
+      </Reveal>
+      <Reveal delay={80}>
+        <StoryCards />
+      </Reveal>
+      <Reveal delay={80}>
+        <GatheringCards />
+      </Reveal>
+    </>
   );
 }
